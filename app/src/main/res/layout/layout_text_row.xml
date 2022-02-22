@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textFirst"
+        android:background="@color/character_color_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/textSecond"
+        android:background="@color/character_color_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/textThird"
+        android:background="@color/character_color_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/text_forth"
+        android:background="@color/character_color_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/textFifth"
+        android:background="@color/character_color_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowRow"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        app:layout_constrainedHeight="true"
+        android:orientation="horizontal"
+        app:flow_horizontalGap="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:flow_horizontalStyle="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:constraint_referenced_ids="textFirst, textSecond, textThird, text_forth, textFifth"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

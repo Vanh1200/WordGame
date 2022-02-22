@@ -1,4 +1,4 @@
-package com.vanh1200.wordgame.enum
+package com.vanh1200.wordgame.characterstate
 
 import androidx.annotation.ColorInt
 import com.vanh1200.wordgame.R

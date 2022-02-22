@@ -1,6 +1,6 @@
 package com.vanh1200.wordgame.viewstate
 
-import com.vanh1200.wordgame.enum.CharacterState
+import com.vanh1200.wordgame.characterstate.CharacterState
 
 sealed class WordGameState {
     object InvalidLengthState : WordGameState()

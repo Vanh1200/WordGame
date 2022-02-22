@@ -23,6 +23,7 @@ class WordViewModel(application: Application, val wordDao: WordDao) : AndroidVie
     //Stored values
     var tryCount = Configuration.MAX_TRY_COUNT
     var listSubmittedWord = mutableListOf<String>()
+    var currentRow = 0
 
     fun readWordsFromFileAndSaveToLocal() {
         viewModelScope.launch(Dispatchers.IO) {
