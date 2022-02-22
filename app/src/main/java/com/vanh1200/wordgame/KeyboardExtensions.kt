@@ -11,7 +11,6 @@ import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
-
 /**
  * Show the soft input from view
  */
@@ -90,8 +89,3 @@ fun Context.toggleSoftInput() {
         manager.toggleSoftInput(0, 0)
     }
 }
-
-private var decorViewDelta = 0
-
-
-

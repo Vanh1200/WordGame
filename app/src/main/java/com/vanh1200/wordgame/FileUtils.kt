@@ -6,4 +6,3 @@ object FileUtils {
     fun readFileAsTextUsingInputStream(inputStream: InputStream) =
         inputStream.readBytes().toString(Charsets.UTF_8)
 }
-

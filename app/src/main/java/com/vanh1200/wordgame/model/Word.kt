@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "word")
 data class Word(
     @PrimaryKey
-    @ColumnInfo(name = "value")
+    @ColumnInfo(name = "value", collate = ColumnInfo.NOCASE)
     val value: String = "",
     @ColumnInfo(name = "meaning")
     val meaning: String = ""

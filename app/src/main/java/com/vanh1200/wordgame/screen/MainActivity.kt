@@ -2,14 +2,15 @@ package com.vanh1200.wordgame.screen
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.vanh1200.wordgame.Configuration
+import com.vanh1200.wordgame.characterstate.CharacterState
 import com.vanh1200.wordgame.databinding.ActivityMainBinding
 import com.vanh1200.wordgame.hideSoftInput
 import com.vanh1200.wordgame.viewmodel.WordViewModel
+import com.vanh1200.wordgame.viewstate.WordGameState
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -21,31 +22,36 @@ class MainActivity : AppCompatActivity() {
             viewBinding.rowFirst.textSecond,
             viewBinding.rowFirst.textThird,
             viewBinding.rowFirst.textForth,
-            viewBinding.rowFirst.textFifth)
+            viewBinding.rowFirst.textFifth
+        )
         val secondRow = arrayOf(
             viewBinding.rowSecond.textFirst,
             viewBinding.rowSecond.textSecond,
             viewBinding.rowSecond.textThird,
             viewBinding.rowSecond.textForth,
-            viewBinding.rowSecond.textFifth)
+            viewBinding.rowSecond.textFifth
+        )
         val thirdRow = arrayOf(
             viewBinding.rowThird.textFirst,
             viewBinding.rowThird.textSecond,
             viewBinding.rowThird.textThird,
             viewBinding.rowThird.textForth,
-            viewBinding.rowThird.textFifth)
+            viewBinding.rowThird.textFifth
+        )
         val forthRow = arrayOf(
             viewBinding.rowForth.textFirst,
             viewBinding.rowForth.textSecond,
             viewBinding.rowForth.textThird,
             viewBinding.rowForth.textForth,
-            viewBinding.rowForth.textFifth)
+            viewBinding.rowForth.textFifth
+        )
         val fifthRow = arrayOf(
             viewBinding.rowFifth.textFirst,
             viewBinding.rowFifth.textSecond,
             viewBinding.rowFifth.textThird,
             viewBinding.rowFifth.textForth,
-            viewBinding.rowFifth.textFifth)
+            viewBinding.rowFifth.textFifth
+        )
         arrayOf(firstRow, secondRow, thirdRow, forthRow, fifthRow)
     }
 
@@ -57,7 +63,6 @@ class MainActivity : AppCompatActivity() {
         readWordFromFileAndSaveToLocal()
         observeData()
         initListeners()
-        viewModel.getAllWords()
     }
 
     private fun initListeners() {
@@ -76,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             return@setOnEditorActionListener false
         }
         viewBinding.buttonSubmit.setOnClickListener {
-            Toast.makeText(this, getCurrentDisplayedText(), Toast.LENGTH_SHORT).show()
+            viewModel.submittedWord(getCurrentDisplayedText())
         }
     }
 
@@ -93,9 +98,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        viewModel.getAllWordsLiveData.observe(this) {
-            Toast.makeText(this, "done ${it.size}", Toast.LENGTH_SHORT).show()
+        viewModel.viewStateLiveData.observe(this) {
+            when (it) {
+                is WordGameState.GameOverState -> {
+                    Toast.makeText(this, "Game over", Toast.LENGTH_SHORT).show()
+                }
+                is WordGameState.WinState -> {
+                    viewBinding.buttonSubmit.isEnabled = false
+                    Toast.makeText(this, "You win", Toast.LENGTH_SHORT).show()
+                }
+                is WordGameState.WordNotExistedState -> {
+                    Toast.makeText(this, "Not found word", Toast.LENGTH_SHORT).show()
+                }
+                is WordGameState.InvalidLengthState -> {
+                    Toast.makeText(this, "Input atleast 5 character", Toast.LENGTH_SHORT).show()
+                }
+                is WordGameState.CheckWordDoneState -> {
+                    updateRowState(it.listState)
+                }
+            }
         }
+    }
+
+    private fun updateRowState(states: List<CharacterState>) {
+        for (i in 0 until Configuration.LENGTH) {
+            viewMatrix[viewModel.currentRow][i].setBackgroundResource(states[i].color)
+        }
+        viewModel.currentRow++
     }
 
     private fun readWordFromFileAndSaveToLocal() {

@@ -4,8 +4,11 @@ import com.vanh1200.wordgame.database.WordDao
 import com.vanh1200.wordgame.model.Word
 import kotlinx.coroutines.flow.Flow
 
-class WordRepositoryImpl(private val dao: WordDao) : WordRepository{
-    override suspend fun readAllWordAndSaveToLocal(words: List<Word>) {
+class WordRepositoryImpl(
+    private val dao: WordDao
+    ) : WordRepository {
+
+    override suspend fun insertAll(words: List<Word>) {
         dao.insertAll(words)
     }
 

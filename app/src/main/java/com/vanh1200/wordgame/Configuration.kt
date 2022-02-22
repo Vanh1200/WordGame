@@ -1,9 +1,7 @@
 package com.vanh1200.wordgame
 
-import java.io.InputStream
-
 object Configuration {
     const val LENGTH = 5
-    const val MAX_TRY_COUNT = 6
+    const val MAX_TRY_COUNT = 5
+    const val ANSWER = "THORN"
 }
-

@@ -4,10 +4,10 @@ import com.vanh1200.wordgame.characterstate.CharacterState
 
 sealed class WordGameState {
     object InvalidLengthState : WordGameState()
-    object GameOverState: WordGameState()
-    object WordNotExistedState: WordGameState()
-    object WinState: WordGameState()
+    object GameOverState : WordGameState()
+    object WordNotExistedState : WordGameState()
+    object WinState : WordGameState()
     data class CheckWordDoneState(
         val listState: List<CharacterState>
-    ): WordGameState()
+    ) : WordGameState()
 }
