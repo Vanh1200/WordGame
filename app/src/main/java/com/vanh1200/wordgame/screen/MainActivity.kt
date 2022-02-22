@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.viewStateLiveData.observe(this) {
             when (it) {
                 is WordGameState.GameOverState -> {
+                    viewBinding.buttonSubmit.isEnabled = false
                     Toast.makeText(this, "Game over", Toast.LENGTH_SHORT).show()
                 }
                 is WordGameState.WinState -> {
