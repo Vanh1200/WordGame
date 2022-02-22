@@ -70,7 +70,8 @@ class WordViewModelTest {
         }
         viewModel.tryCount = 0
         viewModel.submittedWord(word)
-        assert(viewModel.viewStateLiveData.getOrAwaitValue(isRemoveAfterFirstOne = false) is WordGameState.GameOverState)
+        val value = viewModel.viewStateLiveData.getOrAwaitValue(isRemoveAfterFirstOne = false)
+        assert(value is WordGameState.GameOverState)
     }
 
     @Test
@@ -94,7 +95,8 @@ class WordViewModelTest {
         }
         viewModel.tryCount = 0
         viewModel.submittedWord(word)
-        assert(viewModel.viewStateLiveData.getOrAwaitValue(isRemoveAfterFirstOne = false)  is WordGameState.GameOverState)
+        val value = viewModel.viewStateLiveData.getOrAwaitValue(isRemoveAfterFirstOne = false)
+        assert(value is WordGameState.GameOverState)
     }
 }
 

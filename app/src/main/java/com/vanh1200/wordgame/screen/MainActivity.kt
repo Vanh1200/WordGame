@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.editTemp.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                viewBinding.editTemp.setText("")
                 viewBinding.editTemp.hideSoftInput()
                 return@setOnEditorActionListener true
             }
@@ -135,6 +134,8 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until Configuration.LENGTH) {
             if (text.length > i) {
                 viewMatrix[viewModel.currentRow][i].text = text[i].toString()
+            } else {
+                viewMatrix[viewModel.currentRow][i].text = ""
             }
         }
     }
